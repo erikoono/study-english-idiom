@@ -8,8 +8,11 @@ const PORT = process.env.PORT || 3001;
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json'
+  'Access-Control-Allow-Headers': 'Content-Type, Cache-Control, Pragma, Expires',
+  'Content-Type': 'application/json',
+  'Cache-Control': 'no-cache, no-store, must-revalidate',
+  'Pragma': 'no-cache',
+  'Expires': '0'
 };
 
 // APIサーバーを作成

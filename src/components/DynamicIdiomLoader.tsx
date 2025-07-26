@@ -40,7 +40,11 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
     try {
       const idioms = await fetchRandomIdioms(10, selectedDifficulty);
       if (idioms.length > 0) {
-        onIdiomsLoaded(idioms);
+        console.log('初期熟語を読み込みました:', idioms.map(i => i.english));
+        console.log('読み込み時刻:', new Date().toISOString());
+        
+        // 強制的に新しい状態を設定
+        onIdiomsLoaded([...idioms]);
         setLastRefresh(new Date());
       }
     } catch (error) {
@@ -53,9 +57,19 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
   const handleRefresh = async () => {
     onLoadingChange(true);
     try {
+      // 強制的に新しいデータを取得するために少し待機
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // ブラウザキャッシュを完全に無効化
+      const timestamp = new Date().getTime();
       const newIdioms = await refreshIdioms();
+      
       if (newIdioms.length > 0) {
-        onIdiomsLoaded(newIdioms);
+        console.log('新しい熟語を取得しました:', newIdioms.map(i => i.english));
+        console.log('取得時刻:', new Date().toISOString());
+        
+        // 強制的に新しい状態を設定
+        onIdiomsLoaded([...newIdioms]);
         setLastRefresh(new Date());
       }
     } catch (error) {

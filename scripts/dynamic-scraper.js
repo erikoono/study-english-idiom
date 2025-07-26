@@ -253,6 +253,182 @@ const originalIdioms = [
     example: 'No pain, no gain - you have to work hard to succeed.',
     explanation: '努力や苦労なくしては成功できないこと',
     difficulty: 'easy'
+  },
+  // 追加セット6（著作権フリー）
+  {
+    english: 'On the same page',
+    japanese: '同じ考え、同じ理解',
+    example: 'We need to make sure everyone is on the same page.',
+    explanation: '全員が同じ理解や考えを持っていること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Pull yourself up by your bootstraps',
+    japanese: '自力で立ち直る、自助努力する',
+    example: 'You need to pull yourself up by your bootstraps.',
+    explanation: '他人の助けを借りずに自力で立ち直ること',
+    difficulty: 'hard'
+  },
+  {
+    english: 'Put all your eggs in one basket',
+    japanese: '一つのことに全てを賭ける',
+    example: 'Don\'t put all your eggs in one basket.',
+    explanation: '一つの選択肢に全てを賭けること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Read between the lines',
+    japanese: '行間を読む、真意を理解する',
+    example: 'You need to read between the lines to understand what he really means.',
+    explanation: '表面的な言葉の裏にある真意を理解すること',
+    difficulty: 'hard'
+  },
+  {
+    english: 'See eye to eye',
+    japanese: '意見が一致する、同じ見解を持つ',
+    example: 'We don\'t always see eye to eye on politics.',
+    explanation: '意見や見解が一致すること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Take it with a grain of salt',
+    japanese: '話半分に聞く、疑ってかかる',
+    example: 'Take what he says with a grain of salt.',
+    explanation: '話を疑って聞くこと、話半分に受け取ること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'The early bird catches the worm',
+    japanese: '早起きは三文の徳',
+    example: 'The early bird catches the worm - start early!',
+    explanation: '早く始めることが成功の鍵であること',
+    difficulty: 'easy'
+  },
+  {
+    english: 'Throw in the towel',
+    japanese: '諦める、降参する',
+    example: 'I\'m ready to throw in the towel on this project.',
+    explanation: '諦めること、降参すること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Turn a blind eye',
+    japanese: '見て見ぬふりをする',
+    example: 'The teacher turned a blind eye to the cheating.',
+    explanation: '問題を見て見ぬふりをすること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'When pigs fly',
+    japanese: 'ありえない、絶対にない',
+    example: 'I\'ll believe that when pigs fly.',
+    explanation: '絶対にありえないこと',
+    difficulty: 'easy'
+  },
+  {
+    english: 'You can say that again',
+    japanese: 'その通りだ、全く同感だ',
+    example: 'You can say that again - this is terrible!',
+    explanation: '完全に同意すること',
+    difficulty: 'easy'
+  },
+  {
+    english: 'Your guess is as good as mine',
+    japanese: '私にも分からない、推測の域を出ない',
+    example: 'Your guess is as good as mine about what will happen.',
+    explanation: '私にも分からない、推測の域を出ないこと',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Barking up the wrong tree',
+    japanese: '間違った方向で努力する',
+    example: 'You\'re barking up the wrong tree if you think I can help.',
+    explanation: '間違った方向で努力すること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Burn the midnight oil',
+    japanese: '夜遅くまで勉強・仕事する',
+    example: 'I had to burn the midnight oil to finish the project.',
+    explanation: '夜遅くまで勉強や仕事をすること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Catch someone red-handed',
+    japanese: '現行犯で捕まえる',
+    example: 'The police caught him red-handed.',
+    explanation: '現行犯で捕まえること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Do someone a favor',
+    japanese: '人に親切にする、恩を施す',
+    example: 'Could you do me a favor and pick up some milk?',
+    explanation: '人に親切にすること、恩を施すこと',
+    difficulty: 'easy'
+  },
+  {
+    english: 'Eat humble pie',
+    japanese: '屈辱を味わう、謝罪する',
+    example: 'I had to eat humble pie and admit I was wrong.',
+    explanation: '屈辱を味わうこと、謝罪すること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Face the music',
+    japanese: '結果を受け入れる、責任を取る',
+    example: 'It\'s time to face the music and tell the truth.',
+    explanation: '結果を受け入れること、責任を取ること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Get a taste of your own medicine',
+    japanese: '仕返しをされる、同じ目に遭う',
+    example: 'He got a taste of his own medicine when they ignored him.',
+    explanation: '仕返しをされること、同じ目に遭うこと',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Give someone the benefit of the doubt',
+    japanese: '疑わしきは罰せず、信じる',
+    example: 'I\'ll give you the benefit of the doubt this time.',
+    explanation: '疑わしきは罰せずに信じること',
+    difficulty: 'hard'
+  },
+  {
+    english: 'Go the extra mile',
+    japanese: '一層の努力をする、期待以上に頑張る',
+    example: 'She always goes the extra mile for her customers.',
+    explanation: '期待以上に努力すること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Hit the hay',
+    japanese: '寝る、ベッドに入る',
+    example: 'I\'m tired, time to hit the hay.',
+    explanation: '寝ること、ベッドに入ること',
+    difficulty: 'easy'
+  },
+  {
+    english: 'In the heat of the moment',
+    japanese: '興奮して、冷静さを失って',
+    example: 'I said that in the heat of the moment.',
+    explanation: '興奮して冷静さを失っていること',
+    difficulty: 'medium'
+  },
+  {
+    english: 'Keep an eye on',
+    japanese: '注意して見る、監視する',
+    example: 'Keep an eye on the children while I\'m gone.',
+    explanation: '注意して見ること、監視すること',
+    difficulty: 'easy'
+  },
+  {
+    english: 'Let sleeping dogs lie',
+    japanese: '触らぬ神に祟りなし',
+    example: 'Let sleeping dogs lie - don\'t bring up old problems.',
+    explanation: '問題を起こさないように静かにしておくこと',
+    difficulty: 'medium'
   }
 ];
 
@@ -297,9 +473,9 @@ async function generateDynamicIdioms() {
   try {
     console.log('著作権フリーの動的データを生成中...');
     
-    // オリジナルデータからランダムに選択
+    // オリジナルデータからランダムに選択（常に10個を確保）
     const shuffled = [...originalIdioms].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 10);
+    const selected = shuffled.slice(0, Math.min(10, originalIdioms.length));
     
     // 各熟語に少し変化を加える（例文や説明を変更）
     const dynamicIdioms = selected.map((idiom, index) => {
@@ -338,16 +514,83 @@ async function fetchIdiomsFromAPI() {
   try {
     console.log('著作権フリーのAPIからデータを取得中...');
     
-    // 複数の熟語を検索してバリエーションを作成
-    const idiomWords = [
-      'break', 'hit', 'pull', 'get', 'take', 'look', 'miss', 'cost', 'let', 'kill'
+    // 実際の英語熟語を検索（大幅に拡張）
+    const idiomPhrases = [
+      'break the ice',
+      'hit the nail on the head',
+      'pull yourself together',
+      'get over it',
+      'take it easy',
+      'look on the bright side',
+      'miss the boat',
+      'cost an arm and a leg',
+      'let the cat out of the bag',
+      'kill two birds with one stone',
+      'break a leg',
+      'call it a day',
+      'get out of hand',
+      'hit the sack',
+      'on the ball',
+      'so far so good',
+      'speak of the devil',
+      "that's the last straw",
+      'it is not rocket science',
+      'hit the road',
+      'get the hang of it',
+      'jump on the bandwagon',
+      'a dime a dozen',
+      'beat around the bush',
+      'a piece of cake',
+      'pull someone leg',
+      'under the weather',
+      'spill the beans',
+      'the ball is in your court',
+      'get up on the wrong side of the bed',
+      'barking up the wrong tree',
+      'bite the bullet',
+      'burn the midnight oil',
+      'catch someone red-handed',
+      'cut corners',
+      'do someone a favor',
+      'eat humble pie',
+      'face the music',
+      'get a taste of your own medicine',
+      'give someone the benefit of the doubt',
+      'go the extra mile',
+      'hit the hay',
+      'in the heat of the moment',
+      'keep an eye on',
+      'let sleeping dogs lie',
+      'make a long story short',
+      'no pain no gain',
+      'on the same page',
+      'pull yourself up by your bootstraps',
+      'put all your eggs in one basket',
+      'read between the lines',
+      'see eye to eye',
+      'take it with a grain of salt',
+      'the early bird catches the worm',
+      'throw in the towel',
+      'turn a blind eye',
+      'when pigs fly',
+      'you can say that again',
+      'your guess is as good as mine'
     ];
     
     let allIdioms = [];
     
-    for (const word of idiomWords.slice(0, 3)) { // 最初の3個の単語のみ試行
+    // ランダムに5個の熟語を選択（より確実なランダム化）
+    const shuffledPhrases = [...idiomPhrases].sort(() => Math.random() - 0.5);
+    const selectedPhrases = shuffledPhrases.slice(0, 5);
+    console.log('選択された熟語:', selectedPhrases);
+    
+    for (const phrase of selectedPhrases) { // ランダムに5個の熟語を試行
       try {
-        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+        // 熟語の各単語を個別に検索して情報を取得
+        const words = phrase.split(' ');
+        const firstWord = words[0];
+        
+        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${firstWord}`;
         const response = await makeRequest(apiUrl);
         const data = JSON.parse(response);
         
@@ -355,13 +598,13 @@ async function fetchIdiomsFromAPI() {
           const item = data[0];
           if (item.word && item.meanings && item.meanings.length > 0) {
             const meaning = item.meanings[0];
-            const definition = meaning.definitions?.[0]?.definition || `Definition for ${item.word}`;
-            const example = meaning.definitions?.[0]?.example || `Example: ${item.word}`;
+            const definition = meaning.definitions?.[0]?.definition || `Definition for ${phrase}`;
+            const example = meaning.definitions?.[0]?.example || `Example: ${phrase}`;
             
             // 実際の熟語として使用
             allIdioms.push({
-              english: item.word,
-              japanese: `APIから取得: ${item.word}`,
+              english: phrase,
+              japanese: `APIから取得: ${phrase}`,
               example: example,
               explanation: definition,
               difficulty: 'medium'
@@ -370,20 +613,30 @@ async function fetchIdiomsFromAPI() {
         }
         
         // 少し待機してAPIレート制限を避ける
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 300));
         
       } catch (error) {
-        console.log(`API取得失敗 (${word}):`, error.message);
+        console.log(`API取得失敗 (${phrase}):`, error.message);
         continue;
       }
     }
     
     if (allIdioms.length > 0) {
       console.log(`${allIdioms.length}個の熟語をAPIから取得しました`);
-      return allIdioms.slice(0, 10);
+      // 常に10個返すように調整
+      if (allIdioms.length >= 10) {
+        return allIdioms.slice(0, 10);
+      } else {
+        // API取得が10個未満の場合、動的生成で補完
+        const dynamicIdioms = await generateDynamicIdioms();
+        const combined = [...allIdioms, ...dynamicIdioms];
+        return combined.slice(0, 10);
+      }
     }
     
-    return [];
+    // API取得が完全に失敗した場合、動的生成で10個確保
+    const dynamicIdioms = await generateDynamicIdioms();
+    return dynamicIdioms.slice(0, 10);
   } catch (error) {
     console.log('API取得失敗:', error.message);
     return [];
@@ -395,13 +648,18 @@ async function scrapeIdiomsFromWeb() {
   try {
     console.log('著作権フリーの動的データを生成中...');
     
-    // まずAPIから取得を試行
-    const apiIdioms = await fetchIdiomsFromAPI();
-    if (apiIdioms.length > 0) {
-      return apiIdioms;
+    // ランダムにAPIまたは動的データ生成を選択
+    const useApi = Math.random() > 0.5; // 50%の確率でAPIを使用（より多様性を確保）
+    
+    if (useApi) {
+      // まずAPIから取得を試行
+      const apiIdioms = await fetchIdiomsFromAPI();
+      if (apiIdioms.length > 0) {
+        return apiIdioms;
+      }
     }
     
-    // APIが失敗した場合は動的データ生成
+    // APIが失敗した場合または30%の確率で動的データ生成
     return await generateDynamicIdioms();
     
   } catch (error) {
@@ -451,14 +709,25 @@ function getRandomIdiomsByDifficulty(difficulty, count = 10) {
 // 外部APIから新しい熟語を取得する関数（著作権フリー版）
 async function fetchNewIdiomsFromAPI() {
   try {
+    console.log('新しい熟語を取得中...');
+    console.log('取得開始時刻:', new Date().toISOString());
+    
     // 著作権フリーの動的データ生成を実行
     const dynamicIdioms = await scrapeIdiomsFromWeb();
     
-    // 結果にIDを付与
-    return dynamicIdioms.map((idiom, index) => ({
-      id: `scraped-${Date.now()}-${index}`,
-      ...idiom
-    }));
+    // 結果にIDを付与し、ランダムに並び替え、常に10個を確保
+    const shuffledIdioms = dynamicIdioms
+      .map((idiom, index) => ({
+        id: `scraped-${Date.now()}-${Math.random().toString(36).substr(2, 9)}-${index}`,
+        ...idiom
+      }))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 10); // 常に10個に制限
+    
+    console.log('取得された熟語:', shuffledIdioms.map(i => i.english));
+    console.log('取得完了時刻:', new Date().toISOString());
+    console.log(`取得数: ${shuffledIdioms.length}個`);
+    return shuffledIdioms;
     
   } catch (error) {
     console.error('動的データ生成エラー:', error);

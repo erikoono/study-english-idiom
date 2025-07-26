@@ -22,7 +22,13 @@ export async function fetchRandomIdioms(count: number = 10, difficulty?: string)
       params.append('difficulty', difficulty);
     }
 
-    const response = await fetch(`${API_BASE_URL}/idioms?${params}`);
+    // キャッシュを無効化するためにタイムスタンプを追加
+    const timestamp = new Date().getTime();
+    params.append('t', timestamp.toString());
+
+    const response = await fetch(`${API_BASE_URL}/idioms?${params}`, {
+      cache: 'no-cache'
+    });
     const result: ApiResponse<Idiom[]> = await response.json();
 
     if (result.success && result.data) {
@@ -40,7 +46,11 @@ export async function fetchRandomIdioms(count: number = 10, difficulty?: string)
 // 新しい熟語を取得（模擬スクレイピング）
 export async function refreshIdioms(): Promise<Idiom[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/idioms/refresh`);
+    // キャッシュを無効化するためにタイムスタンプを追加
+    const timestamp = new Date().getTime();
+    const response = await fetch(`${API_BASE_URL}/idioms/refresh?t=${timestamp}`, {
+      cache: 'no-cache'
+    });
     const result: ApiResponse<Idiom[]> = await response.json();
 
     if (result.success && result.data) {

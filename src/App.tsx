@@ -35,7 +35,11 @@ function App() {
   };
 
   const handleIdiomsLoaded = (newIdioms: Idiom[]) => {
-    setIdioms(newIdioms);
+    console.log('App: 新しい熟語セットを受信:', newIdioms.map(i => i.english));
+    console.log('App: 受信時刻:', new Date().toISOString());
+    
+    // 強制的に新しい状態を設定
+    setIdioms([...newIdioms]);
     setCurrentIndex(0);
   };
 
