@@ -338,33 +338,49 @@ async function fetchIdiomsFromAPI() {
   try {
     console.log('著作権フリーのAPIからデータを取得中...');
     
-    // 著作権フリーの英語熟語APIを使用
-    const apiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/break';
-    const response = await makeRequest(apiUrl);
-    const data = JSON.parse(response);
+    // 複数の熟語を検索してバリエーションを作成
+    const idiomWords = [
+      'break', 'hit', 'pull', 'get', 'take', 'look', 'miss', 'cost', 'let', 'kill'
+    ];
     
-    if (Array.isArray(data) && data.length > 0) {
-      const item = data[0];
-      if (item.word && item.meanings && item.meanings.length > 0) {
-        const meaning = item.meanings[0];
-        const definition = meaning.definitions?.[0]?.definition || `Definition for ${item.word}`;
-        const example = meaning.definitions?.[0]?.example || `Example: ${item.word}`;
+    let allIdioms = [];
+    
+    for (const word of idiomWords.slice(0, 3)) { // 最初の3個の単語のみ試行
+      try {
+        const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+        const response = await makeRequest(apiUrl);
+        const data = JSON.parse(response);
         
-        // 1つのAPI結果から複数のバリエーションを作成
-        const idioms = [];
-        for (let i = 0; i < 10; i++) {
-          idioms.push({
-            english: `${item.word} ${i + 1}`,
-            japanese: `APIから取得: ${item.word} ${i + 1}`,
-            example: example,
-            explanation: definition,
-            difficulty: 'medium'
-          });
+        if (Array.isArray(data) && data.length > 0) {
+          const item = data[0];
+          if (item.word && item.meanings && item.meanings.length > 0) {
+            const meaning = item.meanings[0];
+            const definition = meaning.definitions?.[0]?.definition || `Definition for ${item.word}`;
+            const example = meaning.definitions?.[0]?.example || `Example: ${item.word}`;
+            
+            // 実際の熟語として使用
+            allIdioms.push({
+              english: item.word,
+              japanese: `APIから取得: ${item.word}`,
+              example: example,
+              explanation: definition,
+              difficulty: 'medium'
+            });
+          }
         }
         
-        console.log(`${idioms.length}個の熟語をAPIから取得しました`);
-        return idioms;
+        // 少し待機してAPIレート制限を避ける
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+      } catch (error) {
+        console.log(`API取得失敗 (${word}):`, error.message);
+        continue;
       }
+    }
+    
+    if (allIdioms.length > 0) {
+      console.log(`${allIdioms.length}個の熟語をAPIから取得しました`);
+      return allIdioms.slice(0, 10);
     }
     
     return [];
