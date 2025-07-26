@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import IdiomCard from './components/IdiomCard';
 import DifficultyFilter from './components/DifficultyFilter';
 import DynamicIdiomLoader from './components/DynamicIdiomLoader';
