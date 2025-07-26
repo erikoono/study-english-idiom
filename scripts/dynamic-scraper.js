@@ -579,12 +579,12 @@ async function fetchIdiomsFromAPI() {
     
     let allIdioms = [];
     
-    // ランダムに5個の熟語を選択（より確実なランダム化）
+    // ランダムに10個の熟語を選択（より確実なランダム化）
     const shuffledPhrases = [...idiomPhrases].sort(() => Math.random() - 0.5);
-    const selectedPhrases = shuffledPhrases.slice(0, 5);
+    const selectedPhrases = shuffledPhrases.slice(0, 10);
     console.log('選択された熟語:', selectedPhrases);
     
-    for (const phrase of selectedPhrases) { // ランダムに5個の熟語を試行
+    for (const phrase of selectedPhrases) { // ランダムに10個の熟語を試行
       try {
         // 熟語の各単語を個別に検索して情報を取得
         const words = phrase.split(' ');

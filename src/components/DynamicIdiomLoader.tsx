@@ -60,8 +60,6 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
       // 強制的に新しいデータを取得するために少し待機
       await new Promise(resolve => setTimeout(resolve, 200));
       
-      // ブラウザキャッシュを完全に無効化
-      const timestamp = new Date().getTime();
       const newIdioms = await refreshIdioms();
       
       if (newIdioms.length > 0) {

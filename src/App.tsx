@@ -60,12 +60,6 @@ function App() {
           </div>
         </header>
 
-        <DynamicIdiomLoader
-          selectedDifficulty={selectedDifficulty}
-          onIdiomsLoaded={handleIdiomsLoaded}
-          onLoadingChange={setIsLoading}
-        />
-
         <DifficultyFilter 
           selectedDifficulty={selectedDifficulty}
           onDifficultyChange={handleDifficultyChange}
@@ -83,6 +77,14 @@ function App() {
             <p className="text-gray-500 text-lg">選択された難易度の問題がありません。</p>
           </div>
         )}
+
+        <div className="mt-8">
+          <DynamicIdiomLoader
+            selectedDifficulty={selectedDifficulty}
+            onIdiomsLoaded={handleIdiomsLoaded}
+            onLoadingChange={setIsLoading}
+          />
+        </div>
 
         <footer className="text-center mt-8 text-gray-500 text-sm">
           <p>英語熟語学習アプリ © 2024</p>
