@@ -1,0 +1,37 @@
+{
+  "name": "study-english-idiom",
+  "version": "1.0.0",
+  "description": "英語の熟語を学習するためのウェブアプリ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "scrape": "node scripts/scrape-idioms-legacy.js",
+    "api": "node scripts/api-server.js",
+    "dev:full": "concurrently \"npm run api\" \"npm run dev\"",
+    "vercel-build": "npm run build",
+    "start": "node scripts/api-server.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^8.2.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0"
+  },
+  "keywords": ["english", "idiom", "learning", "react"],
+  "author": "",
+  "license": "MIT"
+} 
