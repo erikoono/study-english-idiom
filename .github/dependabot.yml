@@ -1,0 +1,66 @@
+version: 2
+updates:
+  # npm依存関係の更新設定
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "erikoono"
+    assignees:
+      - "erikoono"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    # セキュリティアップデートを優先
+    allow:
+      - dependency-type: "all"
+    # 脆弱性のあるパッケージは即座に更新
+    vulnerability-alerts:
+      enabled: true
+    # パッケージグループ化（関連するパッケージをまとめてPR作成）
+    groups:
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+      vite:
+        patterns:
+          - "vite*"
+          - "@vitejs/*"
+      typescript:
+        patterns:
+          - "typescript"
+          - "@types/*"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "autoprefixer"
+          - "postcss"
+    
+  # GitHub Actions の更新設定
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "erikoono"
+    assignees:
+      - "erikoono"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "github-actions"
+      - "automated" 
