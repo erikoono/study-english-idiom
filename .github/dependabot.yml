@@ -22,9 +22,6 @@ updates:
     # セキュリティアップデートを優先
     allow:
       - dependency-type: "all"
-    # 脆弱性のあるパッケージは即座に更新
-    vulnerability-alerts:
-      enabled: true
     # パッケージグループ化（関連するパッケージをまとめてPR作成）
     groups:
       react:
