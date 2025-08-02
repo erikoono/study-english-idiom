@@ -21,7 +21,10 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
   useEffect(() => {
     const checkApi = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/health');
+        const API_BASE_URL = process.env.NODE_ENV === 'production' 
+          ? 'https://study-english-idiom-api.onrender.com/api'
+          : 'http://localhost:3001/api';
+        const response = await fetch(`${API_BASE_URL}/health`);
         const result = await response.json();
         setIsApiAvailable(result.success);
       } catch (error) {
@@ -60,7 +63,10 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
       const timestamp = new Date().getTime();
       params.append('t', timestamp.toString());
 
-      const response = await fetch(`http://localhost:3001/api/words?${params}`, {
+      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://study-english-idiom-api.onrender.com/api'
+        : 'http://localhost:3001/api';
+      const response = await fetch(`${API_BASE_URL}/words?${params}`, {
         cache: 'no-cache'
       });
       
@@ -100,7 +106,10 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
       const params = new URLSearchParams();
       params.append('external', 'true'); // 外部API使用を明示
       
-      const response = await fetch(`http://localhost:3001/api/words/refresh?${params}`, {
+      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://study-english-idiom-api.onrender.com/api'
+        : 'http://localhost:3001/api';
+      const response = await fetch(`${API_BASE_URL}/words/refresh?${params}`, {
         cache: 'no-cache'
       });
       
