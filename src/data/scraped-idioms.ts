@@ -1,9 +1,8 @@
 // 生成された熟語データ
-import { Idiom } from '../types/idiom';
-
-export const scrapedIdioms: Idiom[] = [
+export const scrapedIdioms: any[] = [
   {
     "id": "common-1",
+    "type": "idiom",
     "english": "Break a leg",
     "japanese": "Good luck! (特に演劇やパフォーマンスで)",
     "example": "Break a leg in your performance tonight!",

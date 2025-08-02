@@ -1,8 +1,2 @@
-export interface Idiom {
-  id: string;
-  english: string;
-  japanese: string;
-  example: string;
-  explanation: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-} 
+// 新しい汎用型定義を使用
+export type { Idiom, IdiomItem, LearningItem } from './learningItem'; 

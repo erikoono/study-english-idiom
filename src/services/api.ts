@@ -13,6 +13,12 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
+export interface HealthCheckResponse {
+  success: boolean;
+  status: string;
+  timestamp: string;
+}
+
 // ランダムな熟語を取得
 export async function fetchRandomIdioms(count: number = 10, difficulty?: string): Promise<Idiom[]> {
   try {
@@ -69,7 +75,7 @@ export async function refreshIdioms(): Promise<Idiom[]> {
 export async function checkApiHealth(): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/health`);
-    const result: ApiResponse<any> = await response.json();
+    const result: ApiResponse<HealthCheckResponse> = await response.json();
     return result.success;
   } catch (error) {
     console.error('API Health Check Failed:', error);

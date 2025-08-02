@@ -1,15 +1,16 @@
 import React from 'react';
+import { DifficultyLevel } from '../types/learningItem';
 
 interface DifficultyFilterProps {
-  selectedDifficulty: string;
-  onDifficultyChange: (difficulty: string) => void;
+  selectedDifficulty: DifficultyLevel;
+  onDifficultyChange: (difficulty: DifficultyLevel) => void;
 }
 
 const DifficultyFilter: React.FC<DifficultyFilterProps> = ({ 
   selectedDifficulty, 
   onDifficultyChange 
 }) => {
-  const difficulties = [
+  const difficulties: Array<{ value: DifficultyLevel; label: string; color: string }> = [
     { value: 'all', label: 'すべて', color: 'bg-gray-500' },
     { value: 'easy', label: '初級', color: 'bg-green-500' },
     { value: 'medium', label: '中級', color: 'bg-yellow-500' },
