@@ -21,7 +21,10 @@
       "Bash(git commit:*)",
       "Bash(git checkout:*)",
       "Bash(git push:*)",
-      "mcp__github__create_pull_request"
+      "mcp__github__create_pull_request",
+      "mcp__github__merge_pull_request",
+      "Bash(git pull:*)",
+      "Bash(git merge:*)"
     ],
     "deny": []
   }
