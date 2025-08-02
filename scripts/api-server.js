@@ -155,6 +155,27 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({
         success: true,
         status: 'healthy',
+        server: 'study-english-idiom-api',
+        environment: process.env.NODE_ENV || 'development',
+        port: PORT,
+        timestamp: new Date().toISOString()
+      }));
+
+    } else if (path === '/' && req.method === 'GET') {
+      // ルートエンドポイント（API情報）
+      res.writeHead(200, corsHeaders);
+      res.end(JSON.stringify({
+        success: true,
+        message: '英語学習APIサーバー',
+        version: '1.0.0',
+        endpoints: [
+          'GET /api/health',
+          'GET /api/idioms',
+          'GET /api/idioms/refresh',
+          'GET /api/words',
+          'GET /api/words/refresh',
+          'GET /api/stats'
+        ],
         timestamp: new Date().toISOString()
       }));
 
@@ -186,8 +207,9 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`英語学習APIサーバーが起動しました: http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`英語学習APIサーバーが起動しました: http://0.0.0.0:${PORT}`);
+  console.log(`環境: ${process.env.NODE_ENV || 'development'}`);
   console.log('利用可能なエンドポイント:');
   console.log('  GET /api/idioms?count=10&difficulty=medium');
   console.log('  GET /api/idioms/refresh');
