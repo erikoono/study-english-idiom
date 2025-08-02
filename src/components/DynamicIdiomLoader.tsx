@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { fetchRandomIdioms, refreshIdioms, checkApiHealth } from '../services/api';
+import { useErrorHandler } from '../hooks/useErrorHandler';
 import { Idiom } from '../types/idiom';
 
 interface DynamicIdiomLoaderProps {
@@ -15,6 +16,7 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
 }) => {
   const [isApiAvailable, setIsApiAvailable] = useState<boolean | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
+  const { handleApiError } = useErrorHandler();
 
   // APIサーバーの可用性をチェック
   useEffect(() => {
@@ -25,17 +27,7 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
     checkApi();
   }, []);
 
-  // 難易度が変更されたときに新しい熟語を取得
-  useEffect(() => {
-    loadIdioms();
-  }, [selectedDifficulty]);
-
-  // ページ読み込み時に熟語を取得
-  useEffect(() => {
-    loadIdioms();
-  }, []);
-
-  const loadIdioms = async () => {
+  const loadIdioms = useCallback(async () => {
     onLoadingChange(true);
     try {
       const idioms = await fetchRandomIdioms(10, selectedDifficulty);
@@ -48,13 +40,23 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
         setLastRefresh(new Date());
       }
     } catch (error) {
-      console.error('Failed to load idioms:', error);
+      handleApiError(error as Error, '熟語の読み込みに失敗しました。');
     } finally {
       onLoadingChange(false);
     }
-  };
+  }, [selectedDifficulty, onIdiomsLoaded, onLoadingChange, handleApiError]);
 
-  const handleRefresh = async () => {
+  // 難易度が変更されたときに新しい熟語を取得
+  useEffect(() => {
+    loadIdioms();
+  }, [loadIdioms]);
+
+  // ページ読み込み時に熟語を取得
+  useEffect(() => {
+    loadIdioms();
+  }, []);
+
+  const handleRefresh = useCallback(async () => {
     onLoadingChange(true);
     try {
       // 強制的に新しいデータを取得するために少し待機
@@ -71,11 +73,11 @@ const DynamicIdiomLoader: React.FC<DynamicIdiomLoaderProps> = ({
         setLastRefresh(new Date());
       }
     } catch (error) {
-      console.error('Failed to refresh idioms:', error);
+      handleApiError(error as Error, '新しい問題の取得に失敗しました。');
     } finally {
       onLoadingChange(false);
     }
-  };
+  }, [onIdiomsLoaded, onLoadingChange, handleApiError]);
 
   if (isApiAvailable === null) {
     return (

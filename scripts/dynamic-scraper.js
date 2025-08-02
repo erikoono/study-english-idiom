@@ -435,6 +435,53 @@ const originalIdioms = [
 // 動的スクレイピング用の熟語データベース（フォールバック用）
 const dynamicIdioms = originalIdioms;
 
+// 熟語の日本語訳辞書
+const idiomTranslations = {
+  'break the ice': '場を和ませる、緊張をほぐす',
+  'hit the nail on the head': '核心を突く、的確に言い当てる',
+  'pull yourself together': '冷静になる、立ち直る',
+  'get over it': '乗り越える、諦める',
+  'take it easy': 'リラックスする、のんびりする',
+  'look on the bright side': '明るい面を見る、前向きに考える',
+  'miss the boat': '機会を逃す',
+  'cost an arm and a leg': '非常に高価である',
+  'let the cat out of the bag': '秘密をばらす',
+  'kill two birds with one stone': '一石二鳥',
+  'break a leg': '頑張って、成功を祈る',
+  'call it a day': '今日はここまで、終わりにする',
+  'get out of hand': '手に負えなくなる',
+  'hit the sack': '寝る',
+  'on the ball': '有能な、機敏な',
+  'so far so good': '今のところ順調',
+  'speak of the devil': '噂をすれば',
+  "that's the last straw": '我慢の限界',
+  'it is not rocket science': 'そんなに難しくない',
+  'hit the road': '出発する、旅立つ',
+  'get the hang of it': 'コツを掴む',
+  'jump on the bandwagon': '流行に乗る',
+  'a dime a dozen': 'ありふれた、安っぽい',
+  'beat around the bush': '遠回しに言う',
+  'a piece of cake': '朝飯前、簡単なこと',
+  'pull someone leg': '冗談を言う、からかう',
+  'when pigs fly': 'あり得ない',
+  'go the extra mile': '一層の努力をする',
+  'catch someone red-handed': '現行犯で捕まえる',
+  'throw in the towel': '諦める、降参する',
+  'hit the hay': '寝る',
+  'keep your chin up': '元気を出して',
+  'see eye to eye': '意見が一致する',
+  'burn the midnight oil': '夜遅くまで働く',
+  'spill the beans': '秘密をばらす',
+  'read between the lines': '行間を読む',
+  'turn a blind eye': '見て見ぬふりをする',
+  'in the heat of the moment': '興奮して、一時的な感情で',
+  'let sleeping dogs lie': '触らぬ神に祟りなし',
+  'give someone the benefit of the doubt': '疑わしきは罰せず',
+  'make a long story short': '手短に言うと',
+  'the early bird catches the worm': '早起きは三文の得',
+  'get up on the wrong side of the bed': '機嫌が悪い朝を迎える'
+};
+
 // HTTPリクエスト関数
 function makeRequest(url) {
   return new Promise((resolve, reject) => {
@@ -604,7 +651,7 @@ async function fetchIdiomsFromAPI() {
             // 実際の熟語として使用
             allIdioms.push({
               english: phrase,
-              japanese: `APIから取得: ${phrase}`,
+              japanese: idiomTranslations[phrase] || `${phrase}の意味`,
               example: example,
               explanation: definition,
               difficulty: 'medium'
