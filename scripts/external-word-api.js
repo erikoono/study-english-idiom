@@ -5,6 +5,9 @@ const { URL } = require('url');
 // Free Dictionary API 設定
 const DICTIONARY_API_BASE = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 
+// MyMemory Translation API 設定
+const TRANSLATION_API_BASE = 'https://api.mymemory.translated.net/get';
+
 // 学習レベル別単語リスト
 const WORD_LISTS = {
   easy: [
@@ -31,108 +34,6 @@ const WORD_LISTS = {
   ]
 };
 
-// 単語の日本語翻訳辞書
-const WORD_TRANSLATIONS = {
-  // Easy level
-  'happy': '幸せな、うれしい',
-  'quick': '速い、すばやい',
-  'bright': '明るい、輝いている',
-  'kind': '親切な、優しい',
-  'clean': 'きれいな、清潔な',
-  'warm': '暖かい、温かい',
-  'free': '自由な、無料の',
-  'safe': '安全な、安心な',
-  'simple': '簡単な、単純な',
-  'friend': '友達、友人',
-  'strong': '強い、丈夫な',
-  'good': '良い、上手な',
-  'nice': '素晴らしい、良い',
-  'big': '大きい',
-  'small': '小さい',
-  'new': '新しい',
-  'old': '古い、年老いた',
-  'young': '若い',
-  'fast': '速い',
-  'slow': '遅い',
-  'hot': '暑い、熱い',
-  'cold': '寒い、冷たい',
-  'long': '長い',
-  'short': '短い',
-  'high': '高い',
-  'low': '低い',
-  'light': '軽い、明るい',
-  'dark': '暗い',
-  'open': '開いた、開ける',
-  'close': '近い、閉じる',
-  'easy': '簡単な',
-  'hard': '難しい、固い',
-  
-  // Medium level
-  'analyze': '分析する',
-  'influence': '影響を与える、影響',
-  'consider': '考慮する、考える',
-  'experience': '経験、経験する',
-  'opportunity': '機会、チャンス',
-  'challenge': '挑戦、課題',
-  'environment': '環境',
-  'technology': '技術、テクノロジー',
-  'community': 'コミュニティ、共同体',
-  'creative': '創造的な',
-  'perspective': '視点、見通し',
-  'establish': '設立する、確立する',
-  'significant': '重要な、意味のある',
-  'develop': '発展させる、開発する',
-  'achieve': '達成する、成し遂げる',
-  'determine': '決定する、判断する',
-  'require': '必要とする、要求する',
-  'provide': '提供する、与える',
-  'increase': '増加する、増やす',
-  'improve': '改善する、向上させる',
-  'manage': '管理する、経営する',
-  'organize': '組織する、整理する',
-  'process': '過程、処理する',
-  'solution': '解決策、解答',
-  'strategy': '戦略、作戦',
-  'system': 'システム、制度',
-  'research': '研究、調査',
-  'effective': '効果的な',
-  'efficient': '効率的な',
-  'important': '重要な',
-  'necessary': '必要な',
-  'possible': '可能な',
-  
-  // Hard level
-  'paradigm': 'パラダイム、模範',
-  'meticulous': '細心な、慎重な',
-  'ambiguous': '曖昧な、不明確な',
-  'contemplate': '熟考する、瞑想する',
-  'sophisticated': '洗練された、高度な',
-  'intricate': '複雑な、入り組んだ',
-  'inevitable': '避けられない、必然的な',
-  'synthesize': '合成する、統合する',
-  'profound': '深い、深遠な',
-  'ameliorate': '改善する、向上させる',
-  'ubiquitous': '遍在する、どこにでもある',
-  'ephemeral': '短命な、一時的な',
-  'eloquent': '雄弁な、表現力豊かな',
-  'pragmatic': '実用的な、現実的な',
-  'comprehensive': '包括的な、総合的な',
-  'fundamental': '基本的な、根本的な',
-  'substantial': '相当な、実質的な',
-  'distinguish': '区別する、識別する',
-  'implement': '実施する、実装する',
-  'facilitate': '促進する、容易にする',
-  'demonstrate': '実証する、示す',
-  'consequence': '結果、帰結',
-  'phenomenon': '現象',
-  'hypothesis': '仮説',
-  'methodology': '方法論',
-  'theoretical': '理論的な',
-  'empirical': '経験的な、実証的な',
-  'contemporary': '現代の、同時代の',
-  'conventional': '従来の、伝統的な',
-  'innovative': '革新的な、創新の'
-};
 
 // メモリキャッシュ (シンプルなLRUキャッシュ)
 class WordCache {
@@ -173,6 +74,42 @@ class WordCache {
 }
 
 const wordCache = new WordCache(200); // 200語までキャッシュ
+
+// 英語を日本語に翻訳
+async function translateToJapanese(englishText) {
+  try {
+    const encodedText = encodeURIComponent(englishText);
+    const url = `${TRANSLATION_API_BASE}?q=${encodedText}&langpair=en|ja`;
+    
+    // タイムアウト設定でリクエスト
+    const response = await Promise.race([
+      httpsRequest(url),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('翻訳APIタイムアウト')), 8000)
+      )
+    ]);
+    
+    if (response.responseStatus === 200 && response.responseData) {
+      const translatedText = response.responseData.translatedText;
+      // 基本的なクリーニング
+      const cleanedText = translatedText
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>');
+      
+      console.log(`翻訳: "${englishText}" -> "${cleanedText}"`);
+      return cleanedText;
+    } else {
+      console.warn(`翻訳失敗: ${englishText} - レスポンス: ${response.responseStatus}`);
+      return `${englishText}の意味`; // フォールバック
+    }
+  } catch (error) {
+    console.error(`翻訳エラー: ${englishText}`, error.message);
+    return `${englishText}の意味`; // フォールバック
+  }
+}
 
 // HTTPSリクエストのPromiseラッパー
 function httpsRequest(url) {
@@ -233,7 +170,7 @@ async function fetchWordFromAPI(word) {
       throw new Error('無効なAPIレスポンス');
     }
 
-    return transformAPIResponse(apiResponse[0], word);
+    return await transformAPIResponse(apiResponse[0], word);
   } catch (error) {
     console.error(`単語 "${word}" の取得エラー:`, error.message);
     throw error;
@@ -241,7 +178,7 @@ async function fetchWordFromAPI(word) {
 }
 
 // APIレスポンスをアプリ形式に変換
-function transformAPIResponse(apiData, originalWord) {
+async function transformAPIResponse(apiData, originalWord) {
   const word = apiData.word || originalWord;
   
   // 音節情報の取得
@@ -289,9 +226,12 @@ function transformAPIResponse(apiData, originalWord) {
   // 音声URLの取得
   const audioUrl = phonetic && phonetic.audio ? phonetic.audio : null;
 
+  // 外部翻訳APIを使用して日本語翻訳を取得
+  const japaneseTranslation = await translateToJapanese(word);
+
   return {
     english: word,
-    japanese: WORD_TRANSLATIONS[word.toLowerCase()] || `${word}の意味`, // 日本語翻訳辞書から取得
+    japanese: japaneseTranslation, // 外部翻訳APIから取得
     partOfSpeech: partOfSpeech,
     pronunciation: phonetic ? phonetic.text || '' : '',
     definition: definition,
