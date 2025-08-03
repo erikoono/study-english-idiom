@@ -21,9 +21,12 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
   useEffect(() => {
     const checkApi = async () => {
       try {
-        const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        // Vite環境では import.meta.env を使用
+        const isProduction = import.meta.env.PROD || process.env.NODE_ENV === 'production';
+        const API_BASE_URL = isProduction
           ? 'https://study-english-idiom-api.onrender.com/api'
           : 'http://localhost:3001/api';
+        console.log('Environment check - isProduction:', isProduction, 'API_BASE_URL:', API_BASE_URL);
         const response = await fetch(`${API_BASE_URL}/health`);
         const result = await response.json();
         setIsApiAvailable(result.success);
@@ -63,7 +66,8 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
       const timestamp = new Date().getTime();
       params.append('t', timestamp.toString());
 
-      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+      const isProduction = import.meta.env.PROD || process.env.NODE_ENV === 'production';
+      const API_BASE_URL = isProduction
         ? 'https://study-english-idiom-api.onrender.com/api'
         : 'http://localhost:3001/api';
       const response = await fetch(`${API_BASE_URL}/words?${params}`, {
@@ -106,7 +110,8 @@ const DynamicWordLoader: React.FC<DynamicWordLoaderProps> = ({
       const params = new URLSearchParams();
       params.append('external', 'true'); // 外部API使用を明示
       
-      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+      const isProduction = import.meta.env.PROD || process.env.NODE_ENV === 'production';
+      const API_BASE_URL = isProduction
         ? 'https://study-english-idiom-api.onrender.com/api'
         : 'http://localhost:3001/api';
       const response = await fetch(`${API_BASE_URL}/words/refresh?${params}`, {

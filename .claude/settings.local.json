@@ -24,7 +24,9 @@
       "mcp__github__create_pull_request",
       "mcp__github__merge_pull_request",
       "Bash(git pull:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "WebFetch(domain:study-english-idiom-api.onrender.com)",
+      "WebFetch(domain:study-english-idiom-frontend.onrender.com)"
     ],
     "deny": []
   }

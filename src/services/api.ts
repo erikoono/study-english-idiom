@@ -1,7 +1,9 @@
 import { Idiom } from '../types/idiom';
 
 // 本番環境ではRenderのAPIサーバーを使用、開発環境ではlocalhost
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
+// Vite環境では import.meta.env を使用
+const isProduction = import.meta.env.PROD || process.env.NODE_ENV === 'production';
+const API_BASE_URL = isProduction
   ? 'https://study-english-idiom-api.onrender.com/api'
   : 'http://localhost:3001/api';
 

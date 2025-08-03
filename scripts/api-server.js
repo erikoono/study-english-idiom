@@ -9,8 +9,9 @@ const PORT = process.env.PORT || 3001;
 // CORSヘッダーを設定
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Cache-Control, Pragma, Expires',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, HEAD',
+  'Access-Control-Allow-Headers': 'Content-Type, Cache-Control, Pragma, Expires, Authorization, X-Requested-With',
+  'Access-Control-Max-Age': '86400',
   'Content-Type': 'application/json',
   'Cache-Control': 'no-cache, no-store, must-revalidate',
   'Pragma': 'no-cache',
@@ -19,15 +20,19 @@ const corsHeaders = {
 
 // APIサーバーを作成
 const server = http.createServer(async (req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  const path = parsedUrl.pathname;
+  
+  // リクエストログ
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url} - Origin: ${req.headers.origin || 'none'}`);
+  
   // CORSプリフライトリクエストの処理
   if (req.method === 'OPTIONS') {
+    console.log('CORS preflight request handled');
     res.writeHead(200, corsHeaders);
     res.end();
     return;
   }
-
-  const parsedUrl = url.parse(req.url, true);
-  const path = parsedUrl.pathname;
 
   try {
     if (path === '/api/idioms' && req.method === 'GET') {
